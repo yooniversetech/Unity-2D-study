@@ -11,6 +11,10 @@ public class StudyLog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         
+=======
+        Debug.Log(this.name);
+>>>>>>> 807c345e1611d966a83374173fbb6399b6108764
     }
 }

@@ -12,25 +12,21 @@ public class Movement : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyUp(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             transform.position += Vector3.forward * moveSpeed * Time.deltaTime;
-
         }
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             transform.position += Vector3.back * moveSpeed * Time.deltaTime;
-
         }
-        if (Input.GetKeyUp(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-
         }
-        if (Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             transform.position += Vector3.right * moveSpeed * Time.deltaTime;
-
         }
 
     }
