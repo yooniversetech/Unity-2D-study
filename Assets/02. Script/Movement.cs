@@ -28,6 +28,5 @@ public class Movement : MonoBehaviour
         {
             transform.position += Vector3.right * moveSpeed * Time.deltaTime;
         }
-
     }
 }
