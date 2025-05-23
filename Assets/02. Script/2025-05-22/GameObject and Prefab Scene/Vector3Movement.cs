@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Vector3Movement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 3f;
     void Update()
     {
         /// Input System (Old - Legacy방식이라 지칭함)
@@ -20,8 +20,15 @@ public class Vector3Movement : MonoBehaviour
         //float v = Input.GetAxisRaw("Vertical");
 
         Vector3 dir = new Vector3(h, 0, v);
-        Debug.Log(dir);
+      
 
-        transform.position += dir * moveSpeed * Time.deltaTime;
+        Vector3 normalDir = dir.normalized; // 정규화 과정(0 ~ 1)
+        Debug.Log(normalDir);
+
+
+        transform.position += normalDir * moveSpeed * Time.deltaTime;
+        //     위치(거리)           방향        속도           시간
+
+        transform.LookAt(transform.position + normalDir); // 이동바는 방향의 시점으로 회전하는 기능
     }
 }
