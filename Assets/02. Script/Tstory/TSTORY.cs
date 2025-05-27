@@ -9,6 +9,16 @@ namespace BugMonster // 곤충형 몬스터의 데이터 파일
         string ladybug; // 무당벌레
         string grasshopper; // 메뚜기
         string beetle; // 딱정벌레
+
+       
+    }
+
+    public class AddMethod
+    {
+        int Add(int a, int b)
+        {
+            return a + b;
+        }
     }
 }
 
