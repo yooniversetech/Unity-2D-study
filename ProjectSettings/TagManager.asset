@@ -7,6 +7,8 @@ TagManager:
   - Character
   - Monster
   - Bullet
+  - Cat
+  - Ground
   layers:
   - Default
   - TransparentFX
