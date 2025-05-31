@@ -9,6 +9,13 @@ TagManager:
   - Bullet
   - Cat
   - Ground
+  - Triangle (10)
+  - Circle(30)
+  - Square (50)
+  - Capsule(70)
+  - Gameover
+  - Idle
+  - Run
   layers:
   - Default
   - TransparentFX

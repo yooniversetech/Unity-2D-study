@@ -3,6 +3,8 @@ using UnityEngine;
 public class Vector3Movement : MonoBehaviour
 {
     public float moveSpeed = 3f;
+
+    public static int coinCount = 0;
     void Update()
     {
         /// Input System (Old - Legacy방식이라 지칭함)
@@ -23,7 +25,6 @@ public class Vector3Movement : MonoBehaviour
       
 
         Vector3 normalDir = dir.normalized; // 정규화 과정(0 ~ 1)
-        Debug.Log(normalDir);
 
 
         transform.position += normalDir * moveSpeed * Time.deltaTime;
