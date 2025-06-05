@@ -1,24 +1,24 @@
 using UnityEngine;
 
-namespace BugMonster // 곤충형 몬스터의 데이터 파일
+public class StudyUnityEventCycle : MonoBehaviour
 {
-    public class Bugs : MonoBehaviour
+    void Awake()
     {
-        string bee; // 벌
-        string butterfly; // 나비
-        string ladybug; // 무당벌레
-        string grasshopper; // 메뚜기
-        string beetle; // 딱정벌레
-
-       
+        Debug.Log("Awake");
     }
 
-    public class AddMethod
+    void OnEnable()
     {
-        int Add(int a, int b)
-        {
-            return a + b;
-        }
+        Debug.Log("OnEnable");
+    }
+
+    void Start()
+    {
+        Debug.Log("Start");
+    }
+
+    void OnDisable()
+    {
+        Debug.Log("OnDisable");
     }
 }
-
