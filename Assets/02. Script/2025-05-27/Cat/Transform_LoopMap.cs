@@ -16,6 +16,11 @@ public class Transform_LoopMap : MonoBehaviour
     //    returnPos = new Vector3(60f, height, 0f);
     //}
 
+    private void Start()
+    {
+        
+    }
+
     void Update()
     {
         transform.position += Vector3.left * moveSpeed * Time.deltaTime; // 배경을 왼쪽으로 이동하는 기능
@@ -23,7 +28,7 @@ public class Transform_LoopMap : MonoBehaviour
 
         if (transform.position.x <= -returnPosX) 
         {
-            randomPosY = Random.Range(-8f, -3.5f);
+            randomPosY = Random.Range(-8, -3);
 
             transform.position = new Vector3(returnPosX, randomPosY, -0.1f); 
         }

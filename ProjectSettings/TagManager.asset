@@ -16,6 +16,8 @@ TagManager:
   - Gameover
   - Idle
   - Run
+  - Study Cat Ground
+  - Study Cat Background
   layers:
   - Default
   - TransparentFX

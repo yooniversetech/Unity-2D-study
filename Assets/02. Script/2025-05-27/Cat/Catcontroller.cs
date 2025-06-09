@@ -35,8 +35,14 @@ public class Catcontroller : MonoBehaviour
 
             if (catRb.linearVelocityY > limitJumpPower)
             {
-
+                catRb.linearVelocityY = limitJumpPower;
             }
+
+            var catRotation = transform.eulerAngles;
+            catRotation.z = catRb.linearVelocityY * 5f;
+            transform.eulerAngles = catRotation;
+
+
         }
     }
 
