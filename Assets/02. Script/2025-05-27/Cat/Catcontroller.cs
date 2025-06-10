@@ -46,6 +46,17 @@ public class Catcontroller : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Apple"))
+        {
+            other.gameObject.SetActive(false);
+            other.transform.parent.GetComponent<ItemEvent>().particle.SetActive(true);
+
+            GameManager.score++;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))

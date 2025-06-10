@@ -6,7 +6,8 @@ public class StudySwitch : MonoBehaviour
     public enum Calculationtype { Plus, Minus, Multiplay, Devide}
     public Calculationtype calculationtype = Calculationtype.Plus;
 
-    public int input1, input2, result;
+    public int input1, input2;
+    public int result;
 
     private void Start()
     {
