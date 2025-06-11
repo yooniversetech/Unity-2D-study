@@ -5,17 +5,24 @@ namespace Cat
     public class SoundManager : MonoBehaviour
     {
         public AudioSource audioSource;
-        public AudioClip bgmClip;
+        public AudioClip playBgmClip;
         public AudioClip jumpClip;
 
-        private void Start()
+        public AudioClip introBgmClip; //(06-10)
+        public AudioClip colliderClip; //(06-10)
+
+        public void SetBGMSound(string bgmName)
         {
-            SetBGMSound();
-        }
-        public void SetBGMSound()
-        {
-            audioSource.clip = bgmClip;
-            audioSource.playOnAwake = true;
+            if (bgmName == "Intro")
+            {
+                audioSource.clip = introBgmClip;
+
+            }
+            else if (bgmName == "Paly")
+            {
+                audioSource.clip = playBgmClip;
+            }
+
             audioSource.loop = true;
             audioSource.volume = 0.1f;
 
@@ -24,6 +31,11 @@ namespace Cat
         public void OnJumpSound()
         {
             audioSource.PlayOneShot(jumpClip);
+        }
+
+        public void OnColliderSound()
+        {
+            audioSource.PlayOneShot(colliderClip);
         }
     }
 }

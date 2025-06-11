@@ -1,24 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
 public class StudyUnityEventCycle : MonoBehaviour
 {
-    void Awake()
+    IEnumerator Wait_A_Second()
     {
-        Debug.Log("Awake");
-    }
+        yield return new WaitForSeconds(1f);
+        Debug.Log("1초 대기");
 
-    void OnEnable()
-    {
-        Debug.Log("OnEnable");
-    }
+        yield return new WaitForSeconds(2f);
+        Debug.Log("2초 대기");
 
-    void Start()
-    {
-        Debug.Log("Start");
-    }
-
-    void OnDisable()
-    {
-        Debug.Log("OnDisable");
+        yield return new WaitForSeconds(3f);
+        Debug.Log("3초 대기");
     }
 }

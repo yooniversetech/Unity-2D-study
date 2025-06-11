@@ -41,6 +41,10 @@ public class ItemEvent : MonoBehaviour
         randomPosY = Random.Range(-8f, -3.5f);
         transform.position = new Vector3(posX, randomPosY, -0.1f);
 
+        pipe.SetActive(false);
+        apple.SetActive(false);
+        particle.SetActive(false);
+
         colliderType = (ColliderType)Random.Range(0, 3);
 
         switch (colliderType)

@@ -1,3 +1,4 @@
+using System.Timers;
 using UnityEngine;
 
 public class WhileLoop : MonoBehaviour
@@ -15,23 +16,23 @@ public class WhileLoop : MonoBehaviour
             }
             Debug.Log($"현재 숫자 {count}");
         }
-        
-        
-        
-        
-        
-        
-        
-        //while (count < 10)
-        //{
-        //    count++;
 
-        //    if (count == 5)
-        //    {
-        //        continue; //break; // break와 continue의 차이
-        //    }
-        //    Debug.Log($"현재 {count}입니다");
-        //}
+
+
+
+
+
+
+        while (count < 10)
+        {
+            count++;
+
+            if (count == 5)
+            {
+                continue; //break; // break와 continue의 차이
+            }
+            Debug.Log($"현재 {count}입니다");
+        }
 
         //do
         //{
@@ -39,5 +40,41 @@ public class WhileLoop : MonoBehaviour
         //Debug.Log(count);
         //}
         //while (count < 7);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        while (count < 10)
+        {
+            count++;
+            if (count % 3 == 0)
+            {
+                Debug.Log("박수!!!");
+                continue;
+            }
+            else
+            {
+                Debug.Log($"현제 숫자 : {count}");
+            }
+        }
     }
 }
