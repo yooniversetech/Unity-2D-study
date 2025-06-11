@@ -1,16 +1,15 @@
 using UnityEngine;
 using Cat;
 using UnityEngine.Rendering.Universal;
+using System.Collections;
 
 public class Catcontroller : MonoBehaviour
 {
     public SoundManager soundManager;
+    public VideoManager videoManager; // (06-11 videoManager스크립트 확인 필요)
 
     public GameObject gameOverUI;
     public GameObject fadeUI;
-
-    public GameObject happyVideo; // 성공 영상을 담을 변수
-    public GameObject sadVideo; // 실패 영상을 담을 변수
 
     private Rigidbody2D catRb;
     private Animator catAnim;
@@ -69,7 +68,9 @@ public class Catcontroller : MonoBehaviour
 
                 this.GetComponent<CircleCollider2D>().enabled = false;
 
-                Invoke("HappyVideo", 5f);
+                //Invoke("HappyVideo", 5f);
+
+                StartCoroutine(EndingRoutine(true));
             }
         }
     }
@@ -86,8 +87,9 @@ public class Catcontroller : MonoBehaviour
 
             this.GetComponent<CircleCollider2D>().enabled = false;
 
-            Invoke("SadVideo", 5f);
+            //Invoke("SadVideo", 5f); // 아래에 EndingRoutine으로 코루틴을 사용해서 yield return으로 지연실행 가능해서 Invoke는 필요가 없음
 
+            StartCoroutine(EndingRoutine(false));
         }
 
         if (other.gameObject.CompareTag("Ground"))
@@ -97,21 +99,39 @@ public class Catcontroller : MonoBehaviour
         }
     }
 
-    public void HapppyVideo()
+    IEnumerator EndingRoutine(bool isHappy)
     {
-        happyVideo.SetActive(true);
+        yield return new WaitForSeconds(3.5f);
+        videoManager.VideoPlay(isHappy);
+
+        yield return new WaitUntil(() => videoManager.vPlayer.isPlaying);
+
         fadeUI.SetActive(false);
         gameOverUI.SetActive(false);
-
         soundManager.audioSource.mute = true;
     }
 
-    public void SadVideo()
-    {
-        happyVideo.SetActive(false);
-        fadeUI.SetActive(true);
-        gameOverUI.SetActive(true);
 
-        soundManager.audioSource.mute = false;
-    }
+
+
+
+
+
+    //public void HapppyVideo()
+    //{
+    //    videoManager.VideoPlay(true);
+
+    //    fadeUI.SetActive(false);
+    //    gameOverUI.SetActive(false);
+    //    soundManager.audioSource.mute = true;
+    //}
+
+    //public void SadVideo()
+    //{
+    //    videoManager.VideoPlay(false);
+
+    //    fadeUI.SetActive(false);
+    //    gameOverUI.SetActive(false);
+    //    soundManager.audioSource.mute = true;
+    //}
 }
