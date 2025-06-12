@@ -13,13 +13,19 @@ public class ItemEvent : MonoBehaviour
     public float returnPosX = 15f;
     public float randomPosY;
 
+    private Vector3 initPos;
 
-    private void Start()
+    private void Awake()
     {
-        SetRandomSetting(transform.position.x);
+        initPos = transform.localPosition;
 
         //randomPosY = Random.Range(-8f, -3.5f);
         //transform.position = new Vector3(transform.position.x, randomPosY, -0.1f);
+    }
+
+    private void OnEnable()
+    {
+        SetRandomSetting(initPos.x);
     }
 
     void Update()
@@ -60,5 +66,10 @@ public class ItemEvent : MonoBehaviour
                 apple.SetActive(true);
                 break;
         }
+
+        float a = 3.14f;
+        int b = 5;
+
+        a = (float)b;
     }
 }

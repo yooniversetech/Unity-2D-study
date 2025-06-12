@@ -2,6 +2,7 @@ using UnityEngine;
 using Cat;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class Catcontroller : MonoBehaviour
 {
@@ -19,12 +20,18 @@ public class Catcontroller : MonoBehaviour
 
     public int jumpCount = 0;
 
-    void Start()
+    void Awake()
     {
         catRb = GetComponent<Rigidbody2D>();
         catAnim = GetComponent<Animator>();
     }
 
+    private void OnEnable()
+    {
+        transform.localPosition = new Vector3(0.699591637f, -0.314676046f, -0.76228714f);
+        GetComponent<CircleCollider2D>().enabled = true;
+        soundManager.audioSource.mute = false;
+    }
 
     void Update()
     {
@@ -64,7 +71,7 @@ public class Catcontroller : MonoBehaviour
             if (GameManager.score == 10) // 성공 페이드
             {
                 fadeUI.SetActive(true);
-                fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.white);
+                fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.white, true);
 
                 this.GetComponent<CircleCollider2D>().enabled = false;
 
@@ -83,7 +90,7 @@ public class Catcontroller : MonoBehaviour
 
             gameOverUI.SetActive(true); // 게임 오버 켜기
             fadeUI.SetActive(true); // 페이드 켜기
-            fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.black); // 페이드 실행
+            fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.black, true); // 페이드 실행
 
             this.GetComponent<CircleCollider2D>().enabled = false;
 
@@ -102,13 +109,19 @@ public class Catcontroller : MonoBehaviour
     IEnumerator EndingRoutine(bool isHappy)
     {
         yield return new WaitForSeconds(3.5f);
-        videoManager.VideoPlay(isHappy);
 
+        videoManager.VideoPlay(isHappy);
         yield return new WaitUntil(() => videoManager.vPlayer.isPlaying);
 
+        var newColor = isHappy ? Color.white : Color.black;
+        fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.white, false);
+
+        yield return new WaitForSeconds(3f);
         fadeUI.SetActive(false);
         gameOverUI.SetActive(false);
         soundManager.audioSource.mute = true;
+
+        transform.parent.gameObject.SetActive(false); // PLAY 오브젝트 Off
     }
 
 

@@ -11,11 +11,13 @@ namespace Cat
         public GameObject PlayObj;
         public GameObject introUI;
         public GameObject playUI;
+        public GameObject videoPanel;
 
         public TMP_InputField inputField; // 게임 시작전 이름을 넣는 부분의 텍스트 UI임
         public TextMeshProUGUI nameTextUI; // TextMeshProUGUI는 게임시작시 고양이 머리위에 있는 텍스트 UI임
 
         public Button startButton;
+        public Button reStartButton;
 
         private void Awake()
         {
@@ -27,6 +29,7 @@ namespace Cat
         private void Start()
         {
             startButton.onClick.AddListener(OnStartButton);
+            reStartButton.onClick.AddListener(OnRestartButton);
         }
         public void OnStartButton()
         {
@@ -47,6 +50,13 @@ namespace Cat
 
                 nameTextUI.text = inputField.text;
             }
+        }
+
+        public void OnRestartButton()
+        {
+            GameManager.ResetPlayUI();
+            PlayObj.SetActive(true);
+            videoPanel.SetActive(false);
         }
     }
 }
