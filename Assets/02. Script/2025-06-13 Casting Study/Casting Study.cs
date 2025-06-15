@@ -13,5 +13,10 @@ public class CastingStudy : MonoBehaviour
 
         Debug.Log(num1);
         Debug.Log(num2);
+
+        string str1 = "123";
+        string str2 = "456";
+
+        double numD1 = double.Parse(str1);
     }
 }

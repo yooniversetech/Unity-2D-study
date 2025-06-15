@@ -8,7 +8,7 @@ public class MonsterObject : MonoBehaviour
     public List<GameObject> objList = new List<GameObject>();
     public List<Vector3> vecList = new List<Vector3>();
     public List<bool> boolList = new List<bool>();
-    public List<GameObject> objList = new List<GameObject>();
+    //public List<GameObject> objList = new List<GameObject>();
     private void Start()
     {
         Monster m = new Monster();
@@ -27,6 +27,5 @@ public class MonsterObject : MonoBehaviour
             Debug.Log("형변환 실패");
         }
 
-        GetComponent<GameObject>().
     }
 }

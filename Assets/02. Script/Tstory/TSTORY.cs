@@ -1,17 +1,20 @@
 using System.Collections;
 using UnityEngine;
 
-public class StudyUnityEventCycle : MonoBehaviour
+public class Animal
 {
-    IEnumerator Wait_A_Second()
+    public class Mammalia : Animal
     {
-        yield return new WaitForSeconds(1f);
-        Debug.Log("1초 대기");
+        // 포유류는 새끼를 낳아 젖을 먹이는 공통점이 있습니다.
 
-        yield return new WaitForSeconds(2f);
-        Debug.Log("2초 대기");
+        public class Cat : Mammalia
+        {
+            // 고양이 객체
+        }
 
-        yield return new WaitForSeconds(3f);
-        Debug.Log("3초 대기");
+        public class Dog : Mammalia
+        {
+            // 강아지 객체
+        }
     }
 }
