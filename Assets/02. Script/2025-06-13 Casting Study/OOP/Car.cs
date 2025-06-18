@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Car : Monster
+public class Car : MonoBehaviour
 {
 
 }

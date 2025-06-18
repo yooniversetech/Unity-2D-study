@@ -29,4 +29,13 @@ public class StudyInheritance : MonoBehaviour
             person.Walk();
         }
     }
+
+    public class Character : MonoBehaviour
+    {
+        public virtual void Attack()
+        {
+            Debug.Log("공격1");
+        }
+    }
+        
 }

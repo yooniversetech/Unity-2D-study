@@ -24,7 +24,7 @@ public abstract class Character : MonoBehaviour
         {
             IDropItem item = other.GetComponent<IDropItem>();
 
-            item.Grab();
+            // item.Grab();
             
             currentItem = item;
         }

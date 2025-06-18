@@ -2,18 +2,26 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour, IDropItem
 {
-    public void Drop()
-    {
-        Debug.Log("라이트 버림");
-    }
+    public GameObject bulletPerfab;
+    public Transform shootPos;
 
-    public void Grab()
+    public void Grab(Transform grabPos)
     {
-        Debug.Log("라이트 습득");
+        transform.SetParent(grabPos);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
     }
 
     public void Use()
     {
-        Debug.Log("총 발사!");
+        GameObject bullet = Instantiate(bulletPerfab, shootPos.position, Quaternion.identity);
+        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+
+        bulletRb.AddForce(shootPos.forward * 100f, ForceMode.Impulse);
+    }
+    public void Drop()
+    {
+        transform.SetParent(null);
+        transform.position = Vector3.zero;
     }
 }
