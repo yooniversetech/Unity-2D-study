@@ -9,7 +9,12 @@ public class KnightController_Keyboard : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 7f;
 
+    private float atkDamage = 3f;
+    private float monHp = 9f;
+
     private bool isGround;
+    private bool isAttack;
+    private bool isCombo;
 
     private void Start()
     {
@@ -20,6 +25,8 @@ public class KnightController_Keyboard : MonoBehaviour
     private void Update() // 
     {
         InputKeyboard();
+        Jump();
+        Attack();
     }
 
     private void FixedUpdate()
@@ -45,6 +52,14 @@ public class KnightController_Keyboard : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Monster"))
+        {
+            Debug.Log($"{atkDamage}로 공격");
+        }
+    }
+
     private void InputKeyboard()
     {
         float h = Input.GetAxisRaw("Horizontal");
@@ -52,36 +67,68 @@ public class KnightController_Keyboard : MonoBehaviour
 
         inputDir = new Vector3(h, v, 0);
 
-        Jump();
-        SetAnimation();
+        animator.SetFloat("JoystickX", inputDir.x);
+        animator.SetFloat("JoystickY", inputDir.y);
     }
 
     void Move()
     {
         if (inputDir.x != 0)
+        {
             knightRb.linearVelocityX = inputDir.x * moveSpeed;
 
+            var scaleX = inputDir.x >= 0 ? 1 : -1;
+            transform.localScale = new Vector3(scaleX, 1, 1);
+        }
     }
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround == true)
+        if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
             animator.SetTrigger("Jump");
             knightRb.AddForceY(jumpPower, ForceMode2D.Impulse);
         }
     }
 
-    void SetAnimation()
+    void Attack()
     {
-        if (inputDir.x != 0)
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            animator.SetBool("isRun", true);
 
-            var scaleX = inputDir.x >= 0 ? 1 : -1;
-            transform.localScale = new Vector3(scaleX, 1, 1);
+            if (!isAttack)
+            {
+                isAttack = true;
+                atkDamage = 3f;
+                animator.SetTrigger("Attack");
+            }
+            else
+            {
+                isCombo = true;
+            }
         }
-        else if (inputDir.x == 0)
-            animator.SetBool("isRun", false);
+    }
+
+    public void CheckCombo()
+    {
+        Debug.Log("Combo Check");
+
+        if (isCombo == true)
+        {
+            animator.SetBool("isCombo", true);
+            atkDamage = 5f;
+
+        }
+        else
+        {
+            animator.SetBool("isCombo", false);
+            isAttack = false;
+        }
+    }
+
+    public void EndCombo()
+    {
+        isAttack = false;
+        isCombo = false;
     }
 }

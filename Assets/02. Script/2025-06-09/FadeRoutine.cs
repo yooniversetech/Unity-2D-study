@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +8,10 @@ public class FadeRoutine : MonoBehaviour
 
     public void OnFade(float fadeTime, Color color, bool isFadeStart)
     {
-
         StartCoroutine(Fade(fadeTime, color, isFadeStart));
     }
 
-    IEnumerator Fade(float fadeTime, Color color, bool isFadeStart)
+    public IEnumerator Fade(float fadeTime, Color color, bool isFadeStart)
     {
         float timer = 0f; // 사용될 타이머
         float percent = 0f;
