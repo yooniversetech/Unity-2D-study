@@ -1,20 +1,29 @@
 using System.Collections;
 using UnityEngine;
 
-public class Animal
+public class SetTile : MonoBehaviour
 {
-    public class Mammalia : Animal
+    public GameObject tilePrefabs;
+    public int row = 5, col = 5;
+
+    IEnumerator Start()
     {
-        // 포유류는 새끼를 낳아 젖을 먹이는 공통점이 있습니다.
-
-        public class Cat : Mammalia
+        for (int i = 0; i < row; i++)
         {
-            // 고양이 객체
-        }
+            for (int j = 0; j < col; j++)
+            {
+                var pos = new Vector3(j, 0, i);
 
-        public class Dog : Mammalia
-        {
-            // 강아지 객체
+                GameObject tile = Instantiate(tilePrefabs, pos, Quaternion.identity);
+                Renderer renderer = tile.GetComponent<Renderer>();
+
+                if ((i + j) % 2 == 0) // 짝수
+                    renderer.material.color = Color.white;
+                else // 홀수
+                    renderer.material.color = Color.black;
+
+                yield return new WaitForSeconds(0.1f);
+            }
         }
     }
 }

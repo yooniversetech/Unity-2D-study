@@ -38,5 +38,7 @@ public class JoystickController : MonoBehaviour, IPointerDownHandler, IDragHandl
 
         handlerUI.transform.position = Vector2.zero;
         backgroundUI.SetActive(false);
+
+        knightController.InputJoystick(0f, 0f);
     }
 }
