@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SetTile : MonoBehaviour
+public class SetTile2 : MonoBehaviour
 {
     public GameObject tilePrefabs;
     public int row = 5, col = 5;
