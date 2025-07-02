@@ -1,16 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class KnightController_Keyboard : MonoBehaviour
+
+public class KnightController_Keyboard : MonoBehaviour, IDamageable
 {
     private Animator animator;
     private Rigidbody2D knightRb;
+    private Collider knightColl;
+    [SerializeField] private Image hpBar;
 
     private Vector3 inputDir;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 7f;
 
     private float atkDamage = 3f;
-    private float monHp = 9f;
+
+    public float hp = 100f;
+    public float currHp;
 
     private bool isGround;
     private bool isAttack;
@@ -21,8 +27,10 @@ public class KnightController_Keyboard : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         knightRb = GetComponent<Rigidbody2D>();
+        knightColl = GetComponent<Collider>(); 
 
-
+        currHp = hp;
+        hpBar.fillAmount = currHp / hp;
     }
     private void Update() // 
     {
@@ -58,7 +66,11 @@ public class KnightController_Keyboard : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Monster"))
         {
-            Debug.Log($"{atkDamage}로 공격");
+            if (other.GetComponent<IDamageable>() != null)
+            {
+                other.GetComponent<IDamageable>().TakeDamage(atkDamage);
+                other.GetComponent<Animator>().SetTrigger("Hit");
+            }
         }
 
         if (other.CompareTag("Ladder"))
@@ -91,6 +103,20 @@ public class KnightController_Keyboard : MonoBehaviour
 
         animator.SetFloat("JoystickX", inputDir.x);
         animator.SetFloat("JoystickY", inputDir.y);
+
+        if (inputDir.y < 0)
+        {
+            GetComponent<CapsuleCollider2D>().size = new Vector2(0.7f, 0.3f);
+            GetComponent<CapsuleCollider2D>().offset = new Vector2(0, 0.35f);
+
+        }
+        else
+        {
+
+            GetComponent<CapsuleCollider2D>().size = new Vector2(0.5f, 1.5f);
+            GetComponent<CapsuleCollider2D>().offset = new Vector2(0,0.85f);
+
+        }
     }
 
     void Move()
@@ -157,5 +183,24 @@ public class KnightController_Keyboard : MonoBehaviour
     {
         isAttack = false;
         isCombo = false;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currHp -= damage;
+
+        hpBar.fillAmount = currHp / hp;
+
+        if (hp <= 0f)
+        {
+            Death();
+        }
+    }
+
+    public void Death()
+    {
+        animator.SetTrigger("Death");
+        knightColl.enabled = false;
+        knightRb.gravityScale = 0f;
     }
 }

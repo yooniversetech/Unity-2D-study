@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4508703561863805310}
   - component: {fileID: 6954474742723531725}
   - component: {fileID: -5115424067997655564}
+  - component: {fileID: -1431557860889916490}
   m_Layer: 7
   m_Name: Red Coin
   m_TagString: Untagged
@@ -167,3 +168,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinType: 1
   price: 0
+--- !u!114 &-1431557860889916490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497132731180673883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0332a122d265747b42b58f4578c98f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
