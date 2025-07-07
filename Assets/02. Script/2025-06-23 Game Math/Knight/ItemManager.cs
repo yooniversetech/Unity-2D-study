@@ -1,8 +1,26 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemManager : MonoBehaviour
 {
+    public GameObject inventoryUI;
+    public Button InventoryButton;
+
     [SerializeField] private GameObject[] items;
+
+    [SerializeField] private Transform slotGroup;
+    public Slot[] slots;
+
+    private void Start()
+    {
+        slots = slotGroup.GetComponentsInChildren<Slot>(true); // true로 주면 setActive(false)도 전부 가져오는 기능
+
+        InventoryButton.onClick.AddListener(OnInventory);
+    }
+    public void OnInventory()
+    {
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
+    }
 
     public void DropItem(Vector3 dropPos)
     {
@@ -21,6 +39,13 @@ public class ItemManager : MonoBehaviour
 
     public void GetItem(IItemObject item)
     {
-
+        foreach (var slot in slots)
+        {
+            if (slot.isEmpty)
+            {
+                slot.AddItem(item);
+                break; // break를 안걸어 주면 아이템 하나만 먹어도 모든 슬롯에 전부 그 아이템으로 다 채워지는 버그 발생
+            }
+        }
     }
 }

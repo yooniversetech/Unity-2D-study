@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PotalController : MonoBehaviour
 {
+    public enum SceneType { TOWN, ADVENTURE }
+    public SceneType sceneType = SceneType.TOWN;
     public FadeRoutine fade;
 
     public GameObject portalEffect;
@@ -37,6 +39,13 @@ public class PotalController : MonoBehaviour
 
             yield return null;
         }
-        SceneManager.LoadScene(1);
+        if (sceneType == SceneType.TOWN)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

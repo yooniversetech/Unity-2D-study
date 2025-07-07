@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 3128684463741536998}
   m_Layer: 6
   m_Name: Goblin
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,8 +164,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterState: 0
+  itemManager: {fileID: 0}
+  hpBar: {fileID: 877513643313317082}
   target: {fileID: 0}
   hp: 3
+  currHp: 0
   speed: 1
   attackTime: 0
   atkDamage: 0
